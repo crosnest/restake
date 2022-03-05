@@ -15,7 +15,7 @@ function ValidatorLink(props) {
   }
 
   return (
-    <a href={website()} target="_blank" rel="noreferrer" className={[props.className, "text-dark text-decoration-none"].join(' ')}>
+    <a href={website()} target="_blank" rel="noreferrer" className={[props.className, "text-white text-decoration-none"].join(' ')}>
       {props.children || validator.description.moniker}
     </a>
   );

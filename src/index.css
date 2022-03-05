@@ -7,9 +7,23 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #070e27;
+  --bs-body-color: #ccd2e9;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.table {
+  color: #FFFFFF;
+}
+
+.nav-link {
+  color: #ccd2e9;
+}
+
+.modal-content {
+  background-color: #033283;
 }
