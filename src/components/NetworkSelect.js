@@ -94,7 +94,7 @@ function NetworkSelect(props) {
 
   return (
     <>
-      <Button onClick={handleOpen} variant="link" className="d-flex align-items-center text-dark text-decoration-none border-secondary btn-outline-light" role="button">
+      <Button onClick={handleOpen} variant="link" className="d-flex align-items-center text-white text-decoration-none border-secondary btn-outline-light" role="button">
         <div className="avatar avatar-sm rounded-circle text-white">
           <img alt={props.network.prettyName} src={props.network.data.image} height={30} width={30} />
         </div>
@@ -128,7 +128,7 @@ function NetworkSelect(props) {
                   options={options.networks}
                   onChange={selectNetwork}
                   formatOptionLabel={network => (
-                    <div className="row">
+                    <div className="row text-dark">
                       <div className="col-1">
                         <img src={network.image} width={30} height={30} alt={network.label} />
                       </div>
