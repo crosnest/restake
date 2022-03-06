@@ -1,0 +1,25 @@
+{
+    "headers": [
+      {
+        "source": "/(.*)",
+        "headers" : [
+          {
+            "key" : "Origin Control",
+            "value" : "Off"
+          },
+          {
+            "key" : "X-Frame-Options",
+            "value" : "DENY"
+          },
+          {
+            "key" : "X-XSS-Protection",
+            "value" : "1; mode=block"
+          },
+          {
+            "key" : "s-maxage",
+            "value" : "0"
+          }
+        ]
+      }
+    ]
+  }
