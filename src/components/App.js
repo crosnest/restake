@@ -2,12 +2,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import React from 'react'
 import _ from 'lodash'
-import SigningClient from '../utils/SigningClient.mjs'
 import AlertMessage from './AlertMessage'
 import NetworkSelect from './NetworkSelect'
 import Wallet from './Wallet'
 import Coins from './Coins'
-import ValidatorLink from './ValidatorLink'
 import About from './About'
 
 import { MsgGrant, MsgRevoke } from "cosmjs-types/cosmos/authz/v1beta1/tx.js";
@@ -19,10 +17,7 @@ import {
 } from 'react-bootstrap';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import GitHubButton from 'react-github-btn'
-import Logo from '../assets/logo-nest.png'
-import Logo2x from '../assets/logo@2x.png'
-import Logo3x from '../assets/logo@3x.png'
-
+import Logo from '../assets/logo-nest.svg'
 import TwitterPict from '../assets/twitterpict.svg'
 
 class App extends React.Component {
@@ -185,9 +180,9 @@ class App extends React.Component {
       <Container>
         <header className="d-flex flex-wrap justify-content-between py-3 mb-4 border-bottom">
           <div className="logo d-flex align-items-center mb-3 mb-md-0 text-dark text-decoration-none">
-            <span onClick={() => this.setState({showAbout: true})} role="button" className="text-dark text-decoration-none">
-              <img src={Logo} srcSet={`${Logo2x} 2x, ${Logo3x} 3x`} alt="REStake" loading="lazy" width="114" />
-            </span>
+            <a href="https://cros-nest.com" aria-current="page" class="brand w-nav-brand w--current">
+              <img src={Logo} alt="Cros-Nest" loading="lazy" width="114" />
+            </a>
           </div>
           {this.state.address &&
           <ul className="nav nav-pills justify-content-end  align-self-center">
