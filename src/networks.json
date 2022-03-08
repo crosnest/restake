@@ -680,9 +680,16 @@
       "https://rpc-1-dig.notional.ventures"
     ],
     "image": "https://raw.githubusercontent.com/osmosis-labs/assetlists/main/images/dig.png",
-    "ownerAddress": "digvaloper1zqp8f7ehuf64psmg0tz3cydacgk2nshg338e8m",
     "gasPrice": "0.0025udig",
+    "testAddress": "dig1yxsmtnxdt6gxnaqrg0j0nudg7et2gqczfzw03d",
+    "ownerAddress": "digvaloper1zqp8f7ehuf64psmg0tz3cydacgk2nshg338e8m",
     "operators": [
+      {
+        "address": "digvaloper136avwnuvvy94dqmtnaue2nfvjes8xr37h9rzay",
+        "botAddress": "dig1yxsmtnxdt6gxnaqrg0j0nudg7et2gqczfzw03d",
+        "runTime": "21:00",
+        "minimumReward": 1000
+      },
       {
         "address": "digvaloper1mcm5pj79epddgms7e4r4f93w2m5lxh496tv8h2",
         "botAddress": "dig1mjq48r6435aewerpruwc8up3tz3rzan25dhurw",
