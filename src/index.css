@@ -9,6 +9,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #070e27;
   --bs-body-color: #ccd2e9;
+
 }
 
 code {
@@ -17,6 +18,20 @@ code {
 }
 
 .table {
+  --bs-table-bg: #070e27;
+  --bs-table-accent-bg: #50617a;
+  --bs-table-striped-bg: #cccccc;
+  --bs-table-active-bg: #92c398;
+  --bs-table-hover-bg: #92c398;
+  color: #FFFFFF;
+}
+
+.table-warning {
+  --bs-table-bg: #070e27;
+  --bs-table-accent-bg: #50617a;
+  --bs-table-striped-bg: #cccccc;
+  --bs-table-active-bg: #92c398;
+  --bs-table-hover-bg: #92c398;
   color: #FFFFFF;
 }
 
