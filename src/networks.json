@@ -1697,10 +1697,10 @@
   {
     "name": "cerberus",
     "restUrl": [
-        "https://cerberus-api.skynetvalidators.com"
+        "https://rest-cerberus.ecostake.com"
     ],
     "rpcUrl": [
-        "https://cerberus-api.skynetvalidators.com"
+        "https://rpc-cerberus.ecostake.com"
     ],
     "operators": [
       {
