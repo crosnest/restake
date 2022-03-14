@@ -1,21 +1,30 @@
 import _ from 'lodash'
-import RestClient from './RestClient.mjs'
+import QueryClient from './QueryClient.mjs'
 import SigningClient from './SigningClient.mjs'
 import Operator from './Operator.mjs'
 import Chain from './Chain.mjs'
 
-const Network = async (data) => {
+const Network = async (data, withoutQueryClient) => {
 
   const chain = await Chain(data)
-  const restClient = await RestClient(chain.chainId, data.restUrl)
+  let queryClient
+  if(!withoutQueryClient){
+    queryClient = await QueryClient(chain.chainId, data.rpcUrl, data.restUrl)
+  }
 
   const signingClient = (wallet, key) => {
+    if(!queryClient) return 
+
     const gasPrice = data.gasPrice || '0.0025' + chain.denom
-    return SigningClient(data.rpcUrl, chain.chainId, gasPrice, wallet, key)
+    return SigningClient(queryClient.rpcUrl, chain.chainId, gasPrice, wallet, key)
   }
 
   const getOperator = (operators, operatorAddress) => {
     return operators.find(elem => elem.address === operatorAddress)
+  }
+
+  const getOperatorByBotAddress = (operators, botAddress) => {
+    return operators.find(elem => elem.botAddress === botAddress)
   }
 
   const getOperators = (validators) => {
@@ -34,11 +43,11 @@ const Network = async (data) => {
   }
 
   const getValidators = () => {
-    return restClient.getAllValidators(150)
+    return queryClient.getAllValidators(150)
   }
 
   return {
-    connected: restClient.connected,
+    connected: queryClient && queryClient.connected,
     name: data.name,
     prettyName: chain.prettyName,
     chainId: chain.chainId,
@@ -51,17 +60,18 @@ const Network = async (data) => {
     image: chain.image,
     coinGeckoId: chain.coinGeckoId,
     testAddress: data.testAddress,
-    restUrl: restClient.restUrl,
-    rpcUrl: data.rpcUrl,
+    restUrl: queryClient && queryClient.restUrl,
+    rpcUrl: queryClient && queryClient.rpcUrl,
     operators: data.operators,
     authzSupport: data.authzSupport,
     data,
     chain,
-    restClient,
+    queryClient,
     signingClient,
     getValidators,
     getOperators,
-    getOperator
+    getOperator,
+    getOperatorByBotAddress
   }
 }
 

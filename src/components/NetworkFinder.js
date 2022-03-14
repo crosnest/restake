@@ -18,17 +18,17 @@ function NetworkFinder() {
 
   const [state, setState] = useReducer(
     (state, newState) => ({...state, ...newState}),
-    {loading: true, networks: [], operators: [], validators: []}
+    {loading: true, networks: [], operators: [], validators: {}}
   )
 
   const getNetworks = async () => {
     const registryNetworks = await axios.get('https://registry.cosmos.directory')
       .then(res => res.data)
-      .then(data => data.reduce((a, v) => ({ ...a, [v.chain_name]: v}), {}))
+      .then(data => data.reduce((a, v) => ({ ...a, [v.directory]: v}), {}))
 
     const networks = networksData.filter(el => el.enabled !== false).map(data => {
       const registryData = registryNetworks[data.name] || {}
-      return {...data, ...registryData}
+      return {...registryData, ...data}
     })
     return _.compact(networks).reduce((a, v) => ({ ...a, [v.name]: v}), {})
   }
@@ -55,41 +55,42 @@ function NetworkFinder() {
 
   useEffect(() => {
     if(Object.keys(state.networks).length && !state.network){
-      const networkName = params.network || Object.keys(state.networks)[0]
-      const data = state.networks[networkName]
+      let networkName = params.network || Object.keys(state.networks)[0]
+      let data = state.networks[networkName]
       if(params.network && !data){
-        navigate("/" + Object.keys(state.networks)[0]);
+        networkName = Object.keys(state.networks)[0]
+        data = state.networks[networkName]
       }
       if(!data){
         setState({loading: false})
         return
       }
-      if(!params.network){
+      if(params.network != networkName){
         navigate("/" + networkName);
       }
       Network(data).then(network => {
         setState({network: network})
+      }, (error) => {
+        Network(data, true).then(network => {
+          setState({ network: network, loading: false })
+        })
       })
     }
   }, [state.networks, state.network, params.network, navigate])
 
   useEffect(() => {
     if(state.error) return
-
+    if(!state.network || !state.network.connected) return
     if(state.network && (!Object.keys(state.validators).length)){
-      if(!state.network.restClient.connected){
-        return setState({
-          loading: false
-        })
-      }
-
       state.network.getValidators().then(validators => {
         setState({
           validators,
           operators: state.network.getOperators(validators),
           loading: false
         })
-      }, error => setState({loading: false, error: 'Unable to connect right now, try again'}))
+      }, error => {
+        setState({validators: {}, loading: false})
+      })
     }
   }, [state.network])
 
@@ -101,16 +102,6 @@ function NetworkFinder() {
         </Spinner>
       </div>
     )
-  }
-
-  if (state.error) {
-    return (
-      <p>Loading failed</p>
-    )
-  }
-
-  if(!state.network){
-    return <p>Page not found</p>
   }
 
   return <App networks={state.networks} network={state.network} operators={state.operators} validators={state.validators}

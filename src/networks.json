@@ -23,8 +23,8 @@
       {
         "address": "osmovaloper1pxphtfhqnx9ny27d53z4052e3r76e7qq495ehm",
         "botAddress": "osmo194ytn50yhh67rdha8akhs7c6zulnz4n2pv6n63",
-        "runTime": "21:00",
-        "minimumReward": 1000
+        "runTime": "20:00",
+        "minimumReward": 1
       },
       {
         "address": "osmovaloper1u5v0m74mql5nzfx2yh43s2tke4mvzghr6m2n5t",
@@ -143,7 +143,7 @@
       {
         "address": "osmovaloper1xf9zpq5kpxks49cg606tzd8qstaykxgt2vs0d5",
         "botAddress": "osmo19pqrxrl6n0g0mky4y79hlfzchprmsp5jmu2t6g",
-        "runTime": "19:00",
+        "runTime": "19:31",
         "minimumReward": 1000
       }
     ],
@@ -262,7 +262,7 @@
       {
         "address": "junovaloper1297950qqq6yxhgsms6t5dks66gyk6sctplnyd7",
         "botAddress": "juno1q200ut9chx7t0nnde4h526vdxwudktgkfhxfw7",
-        "runTime": "19:00",
+        "runTime": "21:00",
         "minimumReward": 10000
       },
       {
@@ -384,6 +384,12 @@
         "botAddress": "cosmos14gra89zm8753pfuhvujjulmtkf2qq70feykca5",
         "runTime": "17:28",
         "minimumReward": 10000
+      },
+      {
+        "address": "cosmosvaloper157v7tczs40axfgejp2m43kwuzqe0wsy0rv8puv",
+        "botAddress": "cosmos1zwjfxr3j9gnnrhxwtt8t6qqr4pdn7cgjqmxay4",
+        "runTime": "18:00",
+        "minimumReward": 10000
       }
     ],
     "authzSupport": true
@@ -403,7 +409,7 @@
       {
         "address": "akashvaloper1strxz39h5fapp7zvn5mvf8xm0ea9aajqjstv6g",
         "botAddress": "akash194ytn50yhh67rdha8akhs7c6zulnz4n2yvyy4e",
-        "runTime": "21:00",
+        "runTime": "20:00",
         "minimumReward": 10000
       },
       {
@@ -594,7 +600,7 @@
       {
         "address": "chihuahuavaloper1jdlfdu2gaj0tlchzjhdnh5r7lfzt6l0zxlhkr6",
         "botAddress": "chihuahua1q200ut9chx7t0nnde4h526vdxwudktgkusgugq",
-        "runTime": "19:00",
+        "runTime": "21:00",
         "minimumReward": 1000
       },
       {
@@ -717,8 +723,8 @@
       {
         "address": "terravaloper1f2t96sz9hnwsqnneux6v28xfgn07pkxjduvwjz",
         "botAddress": "terra194ytn50yhh67rdha8akhs7c6zulnz4n20nnrwr",
-        "runTime": "21:00",
-        "minimumReward": 1000
+        "runTime": "20:00",
+        "minimumReward": 10000
       },
       {
         "address": "terravaloper13slfa8cc7zvmjt4wkap2lwmlkp4h3azwltlj6s",
@@ -757,7 +763,7 @@
       {
         "address": "sentvaloper138dhtmfslt0ls4ec0jumj8tyajry4dfuv27jay",
         "botAddress": "sent194ytn50yhh67rdha8akhs7c6zulnz4n2jvl6gv",
-        "runTime": "21:00",
+        "runTime": "20:00",
         "minimumReward": 1000
       },
       {
@@ -916,7 +922,7 @@
       {
         "address": "emoneyvaloper1z0cwp2wezmaehlhzdmqpx55vhxupuk52d7ucjy",
         "botAddress": "emoney194ytn50yhh67rdha8akhs7c6zulnz4n2x5nhm7",
-        "runTime": "21:00",
+        "runTime": "20:00",
         "minimumReward": 1000
       },
       {
@@ -974,7 +980,7 @@
       {
         "address": "kavavaloper1hztgl202pvetspxch0pcchaqzrduw4qq64q08u",
         "botAddress": "kava194ytn50yhh67rdha8akhs7c6zulnz4n24za76y",
-        "runTime": "21:00",
+        "runTime": "20:00",
         "minimumReward": 1000
       },
       {
@@ -1105,7 +1111,7 @@
       {
         "address": "evmosvaloper1shvcjzhcxau6qtlz9w82a646ecwp4hq7ayqt0w",
         "botAddress": "evmos194ytn50yhh67rdha8akhs7c6zulnz4n2tkcdkt",
-        "runTime": "21:00",
+        "runTime": "20:00",
         "minimumReward": 1000
       },
       {
@@ -1190,8 +1196,8 @@
     "operators": [
       {
         "address": "sifvaloper1lnhxf6war6qlldemkqzp0t3g57hpe9a6nh3tyv",
-        "botAddress": "sifchain194ytn50yhh67rdha8akhs7c6zulnz4n2zjs8hn",
-        "runTime": "21:00",
+        "botAddress": "sif194ytn50yhh67rdha8akhs7c6zulnz4n2v2x4rg",
+        "runTime": "20:00",
         "minimumReward": 1000
       },
       {
@@ -1298,6 +1304,12 @@
         "botAddress": "lum1hl0jgxre5z0nkyjj07c5vfdy44yk44atv4l96f",
         "runTime": "22:30",
         "minimumReward": 1000
+      },
+      {
+        "address": "lumvaloper1trkdt99yc4je55759s8z4fctrluxf9pmla7k80",
+        "botAddress": "lum1327kewr0m28edp6ee022myyxzvlf3g5exxpvr7",
+        "runTime": "14:30",
+        "minimumReward": 10000
       }
     ],
     "authzSupport": true
@@ -1389,7 +1401,7 @@
       {
         "address": "comdexvaloper195re7mhwh9urewm3rvaj9r7vm6j63c4sd78njd",
         "botAddress": "comdex194ytn50yhh67rdha8akhs7c6zulnz4n2wctp45",
-        "runTime": "21:00",
+        "runTime": "20:00",
         "minimumReward": 1000
       },
       {
@@ -1453,6 +1465,7 @@
       "https://rpc.cosmos.directory/cheqd",
       "https://rpc.cheqd.net"
     ],
+    "gasPrice": "25ncheq",
     "operators": [
       {
         "address": "cheqdvaloper1m0f5mdkusqq24zhf8azjn2j5v2jqwqlt3ukrc0",
@@ -1494,6 +1507,18 @@
         "address": "umeevaloper14vmuhgm04ffvzts9jxm2wy5d538g96ru9fsg5v",
         "botAddress": "umee1m5hgzum68rjf4c7zhezgkj8hlnmr0kghyhx5wz",
         "runTime": "10:00",
+        "minimumReward": 10000
+      },
+      {
+        "address": "umeevaloper1py60fpud4w468zn7mthfa25xnzuawjum7w90q2",
+        "botAddress": "umee194ytn50yhh67rdha8akhs7c6zulnz4n2mp5ug3",
+        "runTime": "20:00",
+        "minimumReward": 1
+      },
+      {
+        "address": "umeevaloper1gvt9l5tshr0fp8ksl2tuem584z69eyvt9m8yh6",
+        "botAddress": "umee19pqrxrl6n0g0mky4y79hlfzchprmsp5jp3yygg",
+        "runTime": "17:00",
         "minimumReward": 10000
       }
     ],
@@ -1642,6 +1667,12 @@
     ],
     "image": "https://raw.githubusercontent.com/Konstellation/DARC_token/main/darctoken.svg",
     "operators": [
+      {
+        "address": "darcvaloper14kuh954mw4xp7gz5kvr3vtul0lpz5xt3tecpep",
+        "botAddress": "darc14kuh954mw4xp7gz5kvr3vtul0lpz5xt36agx4f",
+        "runTime": "20:00",
+        "minimumReward": 100000
+      },
       {
         "address": "darcvaloper1cmtxucuhf0hysjrx02p9fvzjr5kkcgcj9nxwhc",
         "botAddress": "darc1v9vae554q55xa4pcfdm0p3kv8nxn50jk9dnrq7",
