@@ -2050,7 +2050,7 @@
     "rpcUrl": [
       "https://rpc.cosmos.directory/cerberus"
     ],
-    "gasPrice": "0.0ucrbrus",
+    "gasPrice": "0.025ucrbrus",
     "ownerAddress": "cerberusvaloper1y3thykrje2fmdcf8wva8l8kphmwpx89ur4erq3",
     "operators": [
       {
