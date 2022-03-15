@@ -1821,6 +1821,7 @@
       "https://rpc.cosmos.directory/persistence",
       "https://rpc.core.persistence.one"
     ],
+    "ownerAddress": "persistencevaloper1nchnrey36nrvzjslscu0c3l8j0r4z92hlsz3gk",
     "operators": [
       {
         "address": "persistencevaloper1pdse5rr5njkkka6qeu5m8u704h6z67w5r700vn",
@@ -1925,6 +1926,7 @@
       "https://rpc.cosmos.directory/kichain"
     ],
     "gasPrice": "0.025uxki",
+    "ownerAddress": "kivaloper1lykm0h574w0r3jm545hhlfnd8937a70022xlwl",
     "operators": [
       {
         "address": "kivaloper183ak9rcvfazp5rtljve6v06tyue3dfrglvpfux",
@@ -1984,6 +1986,7 @@
       "https://node1.konstellation.tech:26657"
     ],
     "image": "https://raw.githubusercontent.com/Konstellation/DARC_token/main/darctoken.svg",
+    "ownerAddress": "darcvaloper1cmtxucuhf0hysjrx02p9fvzjr5kkcgcj9nxwhc",
     "operators": [
       {
         "address": "darcvaloper14kuh954mw4xp7gz5kvr3vtul0lpz5xt3tecpep",
@@ -2020,6 +2023,7 @@
     "rpcUrl": [
       "https://rpc-fetchhub.fetch.ai:443"
     ],
+    "ownerAddress": "fetchvaloper1a7l5xar7vyymvahfelar6vtkdar5x9a54l7zvc",
     "operators": [
       {
         "address": "fetchvaloper1a7l5xar7vyymvahfelar6vtkdar5x9a54l7zvc",
