@@ -33,6 +33,7 @@ function About(props) {
           <p>REStake makes use of a new feature in Cosmos blockchains called Authz. This allows a validator (or any other wallet) to send certain pre-authorized transactions on your behalf.</p>
           <p>When you enable REStake you authorize the validator to send Delegate messages for their own validator address. The validator cannot delegate to any other validators, and the authorisation expires automatically after one year and you can revoke at any time.</p>
           <p>You can also optionally add a total number of tokens the validator is allowed to delegate, or adjust the expiry date.</p>
+          <p>If you need any assistance, you can join our <a href="https://discord.gg/psDap3ed7C" target="_blank" rel="noreferrer"><img src="https://maxcdn.icons8.com/Share/icon/Logos/discord_logo1600.png" width={20} height={20} alt=""></img> Discord</a>.</p>
           <h5>How to use REStake</h5>
           <ol>
             <li>Choose a network. Some don't support Authz yet but many do.</li>
@@ -43,8 +44,6 @@ function About(props) {
           <h5>Run REStake yourself</h5>
           <p>REStake is intended to be run by as many validators as possible, giving delegators the choice of who to auto-compound their rewards with. Ask your favourite validator to become an operator or run it yourself, it's easy!</p>
           <p>The project is entirely open source and instructions for running and contributing to REStake can be <a href="https://github.com/eco-stake/restake" target="_blank" rel="noreferrer">found on Github</a>.</p>
-          <h5>ECO Stake 🌱</h5>
-          <p>ECO Stake is a climate positive validator, but we care about the Cosmos ecosystem too. We built REStake to make it easy for all validators to run an autocompounder with Authz, and it's one of many projects we work on in the ecosystem. <a href="https://ecostake.com" target="_blank" rel="noreferrer">Delegate with us</a> to support more projects like this.</p>
         </Modal.Body>
       </Modal>
     </>

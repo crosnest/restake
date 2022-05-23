@@ -82,10 +82,10 @@ export class Autostake {
       })
     })
 
-    timeStamp("Checking", addresses.length, "delegators for grants...")
+    timeStamp(client.network.prettyName, ": Checking", addresses.length, "delegators for grants...")
     let grantedAddresses = await this.getGrantedAddresses(client, addresses)
 
-    timeStamp("Found", grantedAddresses.length, "delegators with valid grants...")
+    timeStamp(client.network.prettyName, ": Found", grantedAddresses.length, "delegators with valid grants...")
 
     let grantMessages = await this.getAutostakeMessages(client, grantedAddresses)
     await this.autostake(client, grantMessages)
@@ -125,7 +125,7 @@ export class Autostake {
     const accounts = await wallet.getAccounts()
     const botAddress = accounts[0].address
 
-    timeStamp('Bot address is', botAddress)
+    timeStamp(network.prettyName, ": Bot address is", botAddress)
 
     if (network.slip44 && network.slip44 !== slip44) {
       timeStamp("!! You are not using the preferred derivation path !!")
@@ -282,7 +282,7 @@ export class Autostake {
     let batchSize = client.network.data.autostake?.batchTxs || 50
     let batches = _.chunk(_.compact(messages), batchSize)
     if(batches.length){
-      timeStamp('Sending', messages.length, 'messages in', batches.length, 'batches of', batchSize)
+      timeStamp(client.network.prettyName, ": Sending", messages.length, 'messages in', batches.length, 'batches of', batchSize)
     }
     let calls = batches.map((batch, index) => {
       return async () => {

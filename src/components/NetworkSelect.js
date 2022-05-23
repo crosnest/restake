@@ -97,7 +97,7 @@ function NetworkSelect(props) {
         />
       </li>
     )
-  b}
+  }
 
   useEffect(() => {
     if (props.show && !show) {

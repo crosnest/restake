@@ -22,15 +22,8 @@ import {
 } from 'react-bootstrap-icons'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import GitHubButton from 'react-github-btn'
-import Logo from '../assets/logo.png'
-import Logo2x from '../assets/logo@2x.png'
-import Logo3x from '../assets/logo@3x.png'
-import LogoWhite from '../assets/logo-white.png'
-import LogoWhite2x from '../assets/logo-white@2x.png'
-import LogoWhite3x from '../assets/logo-white@3x.png'
-
-import PoweredByAkash from '../assets/powered-by-akash.svg'
-import PoweredByAkashWhite from '../assets/powered-by-akash-white.svg'
+import Logo from '../assets/logo-nest.svg'
+import TwitterPict from '../assets/twitterpict.svg'
 import TooltipIcon from './TooltipIcon';
 
 class App extends React.Component {
@@ -207,49 +200,41 @@ class App extends React.Component {
     return (
       <Container>
         <header className="d-flex flex-wrap justify-content-between py-3 mb-4 border-bottom">
-          <div className="logo d-flex align-items-center mb-3 mb-md-0 text-reset text-decoration-none">
-            <span onClick={() => this.setState({ showAbout: true })} role="button" className="text-reset text-decoration-none">
-              {this.props.theme === 'light'
-               ? (
-                  <img src={Logo} srcSet={`${Logo2x} 2x, ${Logo3x} 3x`} alt="REStake" />
-               ) : (
-                  <img src={LogoWhite} srcSet={`${LogoWhite2x} 2x, ${LogoWhite3x} 3x`} alt="REStake" />
-               )}
+          <div className="logo d-flex align-items-center mb-3 mb-md-0 text-dark text-decoration-none">
+            <span onClick={() => this.setState({ showAbout: true })} role="button" className="text-dark text-decoration-none">
+              <img src={Logo} srcSet={`${Logo} 2x, ${Logo} 3x`} loading="lazy" width="114" alt="" />
             </span>
           </div>
           {this.state.address &&
-            <ul className="nav nav-pills justify-content-end">
-              <li className="nav-item d-none d-xl-block">
-                <CopyToClipboard text={this.state.address}
-                  onCopy={() => this.setCopied()}>
-                  <span role="button"><span className={'nav-link disabled clipboard' + (this.state.copied ? ' copied' : '')}>{this.state.address}</span></span>
-                </CopyToClipboard>
+          <ul className="nav nav-pills justify-content-end  align-self-center">
+            <li className="nav-item d-none d-xl-block">
+              <span className='nav-link font-weight-bold'>Your address</span>
+            </li>
+            <li className="nav-item d-none d-xl-block">
+              <CopyToClipboard text={this.state.address}
+                onCopy={() => this.setCopied()}>
+                <span role="button"><span className={'nav-link disabled clipboard' + (this.state.copied ? ' copied' : '')}>{this.state.address}</span></span>
+              </CopyToClipboard>
+            </li>
+            <li className="nav-item d-none d-md-block">
+              <span className="nav-link">
+                <Badge>
+                  <Coins
+                    coins={this.state.balance}
+                    decimals={this.props.network.decimals}
+                  />
+                </Badge>
+              </span>
+            </li>
+            {false && (
+              <li className="nav-item">
+                <Button onClick={() => this.disconnect()} className="nav-link btn-link" aria-current="page">Disconnect</Button>
               </li>
-              <li className="nav-item d-none d-lg-block d-xl-none">
-                <CopyToClipboard text={this.state.address}
-                  onCopy={() => this.setCopied()}>
-                  <span role="button"><span style={{maxWidth: 300}} className={'nav-link disabled small d-block text-truncate clipboard' + (this.state.copied ? ' copied' : '')}>{this.state.address}</span></span>
-                </CopyToClipboard>
-              </li>
-              <li className="nav-item d-none d-md-block">
-                <span className="nav-link">
-                  <Badge>
-                    <Coins
-                      coins={this.state.balance}
-                      decimals={this.props.network.decimals}
-                    />
-                  </Badge>
-                </span>
-              </li>
-              {false && (
-                <li className="nav-item">
-                  <Button onClick={() => this.disconnect()} className="nav-link btn-link" aria-current="page">Disconnect</Button>
-                </li>
               )}
             </ul>
           }
-          <div className="d-flex align-items-center mb-3 mb-md-0 text-reset text-decoration-none">
-            {this.themeIcon()}
+
+          <div className="d-flex align-items-center mb-3 mb-md-0 text-white text-decoration-none">
             <NetworkSelect show={this.state.showNetworkSelect} onHide={() => { this.setState({ showNetworkSelect: false }) }} networks={this.props.networks}
               network={this.props.network}
               validators={this.props.validators}
@@ -259,6 +244,9 @@ class App extends React.Component {
         <div className="mb-5">
           <p className="lead fs-3 text-center mt-5 mb-5">
             REStake allows validators to <strong onClick={() => this.setState({ showAbout: true })} className="text-decoration-underline" role="button">auto-compound</strong> your <strong onClick={this.showNetworkSelect} className="text-decoration-underline" role="button">{this.props.network.prettyName}</strong> staking rewards for you
+          </p>
+          <p className="h5 fs-3 text-center mt-5 mb-5">
+            If you need any assistance, you can join our <a href="https://discord.gg/psDap3ed7C" target="_blank" rel="noreferrer"><img src="https://maxcdn.icons8.com/Share/icon/Logos/discord_logo1600.png" width={20} height={20} alt=""></img> Discord</a>.
           </p>
           <AlertMessage message={this.state.error} variant="danger" dismissible={false} />
           {!this.state.address && (
@@ -302,32 +290,20 @@ class App extends React.Component {
           </p>
         </div>
         <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-          <a href="https://akash.network" target="_blank" rel="noreferrer" className="col-md-4 mb-0 text-muted">
-            {this.props.theme === 'light'
-            ? (
-              <img src={PoweredByAkash} alt="Powered by Akash" width={200} />
-            ) : (
-              <img src={PoweredByAkashWhite} alt="Powered by Akash" width={200} />
-            )}
+          <a href="https://twitter.com/crosnest_com" target="_blank" rel="noreferrer" className="col-md-4 mb-0 text-muted">
+            <img src={TwitterPict} alt="twitter" width={40} />
           </a>
 
-          <div className="col-md-4 align-items-center text-center me-lg-auto">
-            <a href="https://ecostake.com" target="_blank" rel="noreferrer" className="text-reset text-decoration-none d-block mb-2">
-              <span className="d-none d-sm-inline">Built with 💚&nbsp;</span> by ECO Stake 🌱
-            </a>
-            {this.props.network?.usingDirectory && (
-              <a href="https://cosmos.directory" target="_blank" className="text-reset text-decoration-none d-block small">
-                <span className="d-none d-sm-inline">Interchain with</span> cosmos.directory
-              </a>
-            )}
-          </div>
+          <a href="https://ecostake.com" target="_blank" rel="noreferrer" className="col-md-4 d-flex align-items-center justify-content-center me-lg-auto link-secondary text-decoration-none">
+            <span className="d-none d-sm-inline me-1">Built with</span> ECO Stake 🌱
+          </a>
 
           <p className="col-md-4 mb-0 text-muted text-end justify-content-end d-none d-lg-flex">
             {this.props.theme === 'light'
               ? (
-                <GitHubButton href="https://github.com/eco-stake/restake" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star eco-stake/restake on GitHub">Star</GitHubButton>
+                <GitHubButton href="https://github.com/Crosnest/restake" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star Crosnest/restake on GitHub">Star</GitHubButton>
               ) : (
-                <GitHubButton href="https://github.com/eco-stake/restake" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star eco-stake/restake on GitHub" data-color-scheme="no-preference: dark; light: dark; dark: dark;">Star</GitHubButton>
+                <GitHubButton href="https://github.com/Crosnest/restake" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star Crosnest/restake on GitHub" data-color-scheme="no-preference: dark; light: dark; dark: dark;">Star</GitHubButton>
               )}
           </p>
         </footer>
