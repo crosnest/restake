@@ -6,9 +6,13 @@
 
   --bs-table-bg: #070e27;
   --bs-table-accent-bg: #50617a;
-  --bs-table-striped-bg: #cccccc;
+  --bs-table-striped-bg: #ccc;
+  --bs-table-striped-color: #212529;
   --bs-table-active-bg: #92c398;
+  --bs-table-active-color: #212529;
   --bs-table-hover-bg: #92c398;
+  --bs-table-hover-color: #212529;
+  
 }
 
 body {
@@ -28,6 +32,14 @@ code {
 
 .table {
   color: #FFFFFF;
+  --bs-table-bg: #070e27;
+  --bs-table-accent-bg: #50617a;
+  --bs-table-striped-bg: #ccc;
+  --bs-table-striped-color: #212529;
+  --bs-table-active-bg: #92c398;
+  --bs-table-active-color: #212529;
+  --bs-table-hover-bg: #92c398;
+  --bs-table-hover-color: #212529;
 }
 
 .table-warning {

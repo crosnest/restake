@@ -12,8 +12,6 @@ import {
 import NetworkFinder from './components/NetworkFinder'
 import reportWebVitals from './utils/reportWebVitals';
 
-import './index.css';
-
 const app = (
   <React.StrictMode>
     <BrowserRouter>
