@@ -137,6 +137,10 @@ function ValidatorGrants(props) {
     }
   }
 
+  const step = () => {
+    return 1 / pow(10, network.decimals)
+  }
+
   return (
     <>
       {!props.authzSupport && (
@@ -201,10 +205,10 @@ function ValidatorGrants(props) {
       {props.restakePossible && (
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
-            <Form.Label>Total delegation</Form.Label>
+            <Form.Label>Max amount</Form.Label>
             <div className="mb-3">
               <div className="input-group">
-                <Form.Control type="number" name="maxTokensValue" min={0} className={!maxTokensValid() ? 'is-invalid' : 'is-valid'} step={0.000001} placeholder={maxTokens ? divide(maxTokens, pow(10, network.decimals)) : '10'} required={false} value={state.maxTokensValue} onChange={handleInputChange} />
+                <Form.Control type="number" name="maxTokensValue" min={0} className={!maxTokensValid() ? 'is-invalid' : 'is-valid'} step={step()} placeholder={maxTokens ? divide(maxTokens, pow(10, network.decimals)) : '10'} required={false} value={state.maxTokensValue} onChange={handleInputChange} />
                 <span className="input-group-text">{network.symbol.toUpperCase()}</span>
               </div>
               <div className="form-text text-end">

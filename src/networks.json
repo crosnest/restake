@@ -41,7 +41,7 @@
     "name": "terra",
     "apyEnabled": false,
     "gasPrice": "0.015uluna",
-    "ownerAddress": "terravaloper1ktu7a6wqlk6vlywf4rt6wfcxuphc0es27p0qvx",
+    "ownerAddress": "terravaloper1ktu7a6wqlk6vlywf4rt6wfcxuphc0es27p0qvx"
   },
   {
     "name": "sentinel",
@@ -79,9 +79,9 @@
   },
   {
     "name": "evmos",
-    "enabled": false,
+    "ownerAddress": "evmosvaloper1aep37tvd5yh4ydeya2a88g2tkjz6f2lcrfjumh",
     "apyEnabled": false,
-    "ownerAddress": "evmosvaloper1aep37tvd5yh4ydeya2a88g2tkjz6f2lcrfjumh"
+    "txTimeout": 120000
   },
   {
     "name": "sifchain",
@@ -196,5 +196,9 @@
   {
     "name": "meme",
     "gasPrice": "0.025umeme"
+  },
+  {
+    "name": "cronos",
+    "enabled": false
   }
 ]

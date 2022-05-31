@@ -1,18 +1,24 @@
-import { DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
-import { Slip10RawIndex, pathToString } from "@cosmjs/crypto";
-import Network from '../src/utils/Network.mjs'
-import {coin, timeStamp, mapSync, executeSync, overrideNetworks} from '../src/utils/Helpers.mjs'
+import fs from 'fs'
+import _ from 'lodash'
 
 import { add, bignumber, floor, smaller, smallerEq } from 'mathjs'
+
+import { DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
+import { Slip10RawIndex, pathToString } from "@cosmjs/crypto";
+
+import { Wallet } from "@ethersproject/wallet";
+import { ETH } from "@tharsis/address-converter";
+import Bech32 from "bech32";
 
 import { MsgDelegate } from "cosmjs-types/cosmos/staking/v1beta1/tx.js";
 import { MsgExec } from "cosmjs-types/cosmos/authz/v1beta1/tx.js";
 
-import fs from 'fs'
-import _ from 'lodash'
+import Network from '../src/utils/Network.mjs'
+import AutostakeHealth from "../src/utils/AutostakeHealth.mjs";
+import {coin, timeStamp, mapSync, executeSync, overrideNetworks} from '../src/utils/Helpers.mjs'
+import EthSigner from '../src/utils/EthSigner.mjs';
 
 import 'dotenv/config'
-import AutostakeHealth from "../src/utils/AutostakeHealth.mjs";
 
 export class Autostake {
   constructor(){
@@ -44,10 +50,9 @@ export class Autostake {
 
         if(!client) return health.success('Skipping')
 
-        const { restUrl, rpcUrl, usingDirectory } = client.network
+        const { restUrl, usingDirectory } = client.network
 
         timeStamp('Using REST URL', restUrl)
-        timeStamp('Using RPC URL', rpcUrl)
 
         if(usingDirectory){
           timeStamp('You are using public nodes, script may fail with many delegations. Check the README to use your own')
@@ -94,7 +99,6 @@ export class Autostake {
 
   async getClient(data, health) {
     let network = new Network(data)
-    let slip44
     try {
       await network.load()
     } catch {
@@ -103,7 +107,39 @@ export class Autostake {
 
     timeStamp('Starting', network.prettyName)
 
-    if(network.data.autostake?.correctSlip44){
+    const { wallet, botAddress, slip44 } = await this.getWallet(network)
+
+    timeStamp(network.prettyName, ": Bot address is", botAddress)
+
+    if (network.slip44 && network.slip44 !== slip44) {
+      timeStamp("!! You are not using the preferred derivation path !!")
+      timeStamp("!! You should switch to the correct path unless you have grants. Check the README !!")
+    }
+
+    const operator = network.getOperatorByBotAddress(botAddress)
+    if (!operator) return timeStamp('Not an operator')
+
+    if (!network.authzSupport) return timeStamp('No Authz support')
+
+    await network.connect()
+    if (!network.restUrl) throw new Error('Could not connect to REST API')
+
+    const client = await network.signingClient(wallet)
+    client.registry.register("/cosmos.authz.v1beta1.MsgExec", MsgExec)
+
+    return {
+      network,
+      operator,
+      health,
+      signingClient: client,
+      queryClient: network.queryClient
+    }
+  }
+
+  async getWallet(network){
+    let slip44
+    if(network.data.autostake?.correctSlip44 || network.slip44 === 60){
+      if(network.slip44 === 60) timeStamp('Found ETH coin type')
       slip44 = network.slip44 || 118
     }else{
       slip44 = network.data.autostake?.slip44 || 118
@@ -122,35 +158,23 @@ export class Autostake {
       hdPaths: [hdPath]
     });
 
+    if(network.slip44 === 60){
+      return await this.getEthWallet(network, wallet)
+    }
+
     const accounts = await wallet.getAccounts()
     const botAddress = accounts[0].address
 
-    timeStamp(network.prettyName, ": Bot address is", botAddress)
+    return { wallet, botAddress, slip44 }
+  }
 
-    if (network.slip44 && network.slip44 !== slip44) {
-      timeStamp("!! You are not using the preferred derivation path !!")
-      timeStamp("!! You should switch to the correct path unless you have grants. Check the README !!")
-    }
+  async getEthWallet(network, signer){
+    const wallet = Wallet.fromMnemonic(this.mnemonic);
+    const ethereumAddress = await wallet.getAddress();
+    const data = ETH.decoder(ethereumAddress);
+    const botAddress = Bech32.encode(network.prefix, Bech32.toWords(data))
 
-    const operator = network.getOperatorByBotAddress(botAddress)
-    if (!operator) return timeStamp('Not an operator')
-
-    if (!network.authzSupport) return timeStamp('No Authz support')
-
-    await network.connect()
-    if (!network.rpcUrl) throw new Error('Could not connect to RPC API')
-    if (!network.restUrl) throw new Error('Could not connect to REST API')
-
-    const client = await network.signingClient(wallet)
-    client.registry.register("/cosmos.authz.v1beta1.MsgExec", MsgExec)
-
-    return {
-      network,
-      operator,
-      health,
-      signingClient: client,
-      queryClient: network.queryClient
-    }
+    return { wallet: EthSigner(signer, wallet), botAddress, slip44: 60 }
   }
 
   checkBalance(client) {
