@@ -64,12 +64,12 @@ export default class NetworkRunner {
       this.balance = await this.getBalance() || 0
 
       let grantedAddresses = await this.getAddressesFromGrants(addresses)
-      if(grantedAddresses === false){
+      if (grantedAddresses === false) {
         this.logger.warn('All grants query not supported, falling back to checking delegators...')
         grantedAddresses = await this.getAddressesFromDelegators(addresses)
       }
 
-      this.logger.info('Found addresses with valid grants...', { count: grantedAddresses.length})
+      this.logger.info('Found addresses with valid grants...', { count: grantedAddresses.length })
       if (grantedAddresses.length) {
         await this.autostake(grantedAddresses)
       }
@@ -106,13 +106,13 @@ export default class NetworkRunner {
         return this.throttleQuery()
       })
     } catch (error) {
-      if(error.response?.status === 501){
+      if (error.response?.status === 501) {
         return false
-      }else{
+      } else {
         throw new Error(`Failed to load grants: ${error.response?.status}`)
       }
     }
-    if (addresses){
+    if (addresses) {
       this.logger.info('Checking addresses for grants...', { length: addresses.length })
     } else {
       addresses = allGrants.map(grant => grant.granter)
@@ -186,11 +186,11 @@ export default class NetworkRunner {
         grantValidators = [validatorAddress];
       } else {
         const { allow_list, deny_list } = result.stakeGrant.authorization
-        if(allow_list?.address){
+        if (allow_list?.address) {
           grantValidators = allow_list?.address || []
-        }else if(deny_list?.address){
+        } else if (deny_list?.address) {
           grantValidators = deny_list.address.includes(validatorAddress) || deny_list.address.includes('') ? [] : [validatorAddress]
-        }else{
+        } else {
           grantValidators = []
         }
         if (!grantValidators.includes(validatorAddress)) {
@@ -303,7 +303,7 @@ export default class NetworkRunner {
 
     const addresses = Object.keys(this.batch)
     const finished = (Object.keys(this.processed).length >= total && addresses.length > 0)
-    if (addresses.length >= batchSize || finished) {
+    if ((addresses.length >= batchSize || finished) && Object.values(this.batch).flat().length >= 5) {
       const batch = Object.values(this.batch).flat()
       this.batch = {}
 
@@ -366,8 +366,8 @@ export default class NetworkRunner {
     }
   }
 
-  async throttleQuery(){
-    if(!this.opts.queryThrottle) return
+  async throttleQuery() {
+    if (!this.opts.queryThrottle) return
 
     await new Promise(r => setTimeout(r, this.opts.queryThrottle));
   }
