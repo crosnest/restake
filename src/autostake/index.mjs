@@ -64,7 +64,7 @@ export default function Autostake(mnemonic, opts) {
   async function runWithRetry(data, health, retries, runners) {
     retries = retries || 0
     runners = runners || []
-    const maxRetries = data.autostake?.retries ?? 2
+    const maxRetries = data.autostake?.retries ?? 0
     let { failedAddresses } = runners[runners.length - 1] || {}
     let networkRunner, error
     try {
