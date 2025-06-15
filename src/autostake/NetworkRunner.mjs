@@ -27,6 +27,7 @@ export default class NetworkRunner {
     this.results = []
 
     this.logger = createLogger('network_runner').child({ chain: network.name })
+    this.grandTotal = 0
   }
 
   didSucceed() {
@@ -270,6 +271,7 @@ export default class NetworkRunner {
       amount: autostakeAmount,
       denom: this.network.denom,
     })
+    this.grandTotal += autostakeAmount
 
     return this.buildRestakeMessage(address, this.operator.address, autostakeAmount, this.network.denom)
   }
@@ -303,7 +305,8 @@ export default class NetworkRunner {
 
     const addresses = Object.keys(this.batch)
     const finished = (Object.keys(this.processed).length >= total && addresses.length > 0)
-    if ((addresses.length >= batchSize || finished) && Object.values(this.batch).flat().length >= 5) {
+    // if ((addresses.length >= batchSize || finished) && Object.values(this.batch).flat().length >= 5) {
+    if ((addresses.length >= batchSize || finished) && this.grandTotal >= 10_000_000) {
       const batch = Object.values(this.batch).flat()
       this.batch = {}
 
